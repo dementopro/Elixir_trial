@@ -5,7 +5,7 @@ defmodule NearbyWeb.MobileFoodFacilityController do
 
   action_fallback NearbyWeb.FallbackController
 
-  def nearby(conn, params) do
+  def nearby(conn, %{"current_lat" => _, "current_lng" => _} = params) do
     with mobile_food_facilities when is_list(mobile_food_facilities) <-
            MobileFoodFacilities.fetch_nearby(params) do
       conn
@@ -14,5 +14,13 @@ defmodule NearbyWeb.MobileFoodFacilityController do
         mobile_food_facilities: mobile_food_facilities
       })
     end
+  end
+
+  def nearby(conn, _params) do
+      conn
+      |> put_status(:bad_request)
+      |> json(%{
+       error: "missing current_lat and current_lng"
+      })
   end
 end

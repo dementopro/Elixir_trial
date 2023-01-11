@@ -1,19 +1,22 @@
 # Nearby
 
-To start your Phoenix server:
+# DB 
+Start Postgres locally as:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+docker run --name postgres -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 postgis/postgis
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+# Run Mix Task to migrate data from CSV
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+mix PopulateMobileFoodFacilityPermit
 
-## Learn more
+# API
+- List all the food trucks near by
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+curl --location --request GET 'http://localhost:4000/api/mobile_food_facility/nearby?current_lat= "37.79236678688307"&current_lng= "-122.40014830676716"&radius="1000"'
+
+radius is optional
+current_lat and current_lng are required
+
+
+
+
