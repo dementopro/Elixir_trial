@@ -1,7 +1,7 @@
 defmodule Mix.Tasks.PopulateMobileFoodFacilityPermit do
   use Mix.Task
 
-  alias Nearby.MobileFoodFacilityPermits
+  alias Nearby.MobileFoodFacilities
 
   def run(_) do
     Mix.Task.run("app.start", [])
@@ -34,8 +34,8 @@ defmodule Mix.Tasks.PopulateMobileFoodFacilityPermit do
 
     with {:fetch_mobile_food_facility, nil} <-
            {:fetch_mobile_food_facility,
-            MobileFoodFacilityPermits.get_by(%{location_id: location_id, applicant: applicant})},
-         {:ok, mobile_food_facility} <- MobileFoodFacilityPermits.create(attrs) do
+            MobileFoodFacilities.get_by(%{location_id: location_id, applicant: applicant})},
+         {:ok, mobile_food_facility} <- MobileFoodFacilities.create(attrs) do
       IO.puts("MobileFoodFacility #{mobile_food_facility.applicant} created")
     else
       {:fetch_mobile_food_facility, mobile_food_facility} ->

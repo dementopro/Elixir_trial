@@ -7,6 +7,9 @@ defmodule NearbyWeb.Router do
 
   scope "/api", NearbyWeb do
     pipe_through :api
+
+    ## query_params: cur_lat= , cur_lng= , radius=
+    get "/mobile_food_facility/nearby", MobileFoodFacilityController, :nearby
   end
 
   # Enables the Swoosh mailbox preview in development.
