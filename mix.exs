@@ -36,13 +36,17 @@ defmodule Nearby.MixProject do
       {:phoenix, "~> 1.6.15"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
-      {:postgrex, ">= 0.0.0"},
+      {:postgrex, "~> 0.16.3"},
       {:swoosh, "~> 1.3"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:geo, "~> 3.4.3"},
+      {:geo_postgis, "~> 3.4.2"},
+      {:csv, "~> 2.4.1"},
+      {:poison, "~> 5.0", override: true}
     ]
   end
 
