@@ -10,6 +10,7 @@ config :nearby, Nearby.Repo,
   password: "postgres",
   hostname: "localhost",
   database: "nearby_test#{System.get_env("MIX_TEST_PARTITION")}",
+  types: Nearby.PostgresTypes,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 

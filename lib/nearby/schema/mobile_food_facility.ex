@@ -39,8 +39,8 @@ defmodule Nearby.MobileFoodFacility do
     mobile_food_facilities = MobileFoodFacility
 
     radius = Map.get(params, "radius", @default_radius)
-    current_lat = Map.get(params, "current_lat")
-    current_lng = Map.get(params, "current_lng")
+    current_lat = Map.get(params, "current_lat") |> to_float()
+    current_lng = Map.get(params, "current_lng") |> to_float()
 
     if is_nil(current_lat) or is_nil(current_lng) do
       mobile_food_facilities
@@ -57,6 +57,15 @@ defmodule Nearby.MobileFoodFacility do
           ^radius
         )
       )
+    end
+  end
+
+  defp to_float(nil), do: nil
+
+  defp to_float(value) do
+    case Float.parse(value) do
+      {float_val, _} -> float_val
+      :error -> 0.0
     end
   end
 end

@@ -6,7 +6,8 @@ defmodule NearbyWeb.MobileFoodFacilityController do
   action_fallback NearbyWeb.FallbackController
 
   def nearby(conn, params) do
-    with {:ok, mobile_food_facilities} <- MobileFoodFacilities.fetch_nearby(params) do
+    with mobile_food_facilities when is_list(mobile_food_facilities) <-
+           MobileFoodFacilities.fetch_nearby(params) do
       conn
       |> put_status(:ok)
       |> json(%{
