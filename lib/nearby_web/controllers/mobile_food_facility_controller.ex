@@ -17,10 +17,10 @@ defmodule NearbyWeb.MobileFoodFacilityController do
   end
 
   def nearby(conn, _params) do
-      conn
-      |> put_status(:bad_request)
-      |> json(%{
-       error: "missing current_lat and current_lng"
-      })
+    conn
+    |> put_status(:bad_request)
+    |> json(%{
+      error: "missing current_lat and current_lng"
+    })
   end
 end
