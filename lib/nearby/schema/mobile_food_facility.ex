@@ -38,7 +38,7 @@ defmodule Nearby.MobileFoodFacility do
   def mobile_food_facilities_query(params) do
     mobile_food_facilities = MobileFoodFacility
 
-    radius = Map.get(params, "radius", @default_radius)
+    radius = Map.get(params, "radius", @default_radius) |> to_integer()
     current_lat = Map.get(params, "current_lat") |> to_float()
     current_lng = Map.get(params, "current_lng") |> to_float()
 
@@ -66,6 +66,15 @@ defmodule Nearby.MobileFoodFacility do
     case Float.parse(value) do
       {float_val, _} -> float_val
       :error -> 0.0
+    end
+  end
+
+  defp to_integer(value) when is_integer(value), do: value
+
+  defp to_integer(value) do
+    case Integer.parse(value) do
+      {int_val, _} -> int_val
+      :error -> 0
     end
   end
 end
