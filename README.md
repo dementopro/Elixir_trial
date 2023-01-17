@@ -1,4 +1,4 @@
-# Nearby
+# Elixir_Assessment
 
 # DB 
 Start Postgres locally as:
